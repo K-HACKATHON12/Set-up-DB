@@ -1,6 +1,7 @@
 from urllib.parse import quote
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, MetaData
 from dotenv import dotenv_values
+from model.seoul import StreetPopulationModel
 
 # take environment variables from .env
 config = dotenv_values("DB.env")
@@ -14,17 +15,15 @@ database = config['DATABASE']
 
 # 연결 문자열 생성
 connection_string = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}"
-print("Connection String:", connection_string)
 
 # SQLAlchemy 엔진 생성
 engine = create_engine(connection_string)
 
-try:
-    # 데이터베이스 연결 시도
-    with engine.connect() as connection:
-        # 간단한 쿼리 실행
-        result = connection.execute(text("SELECT 1"))
-        for row in result:
-            print("DB 연결 성공:", row)
-except Exception as e:
-    print("DB 연결 실패:", e)
+# 메타데이터 객체 생성
+metadata = MetaData()
+
+# Table 생성
+street_population = StreetPopulationModel(metadata)
+metadata.create_all(engine)
+
+# 각 테이블에 데이터 생성
