@@ -1,13 +1,17 @@
 from sqlalchemy import Table, Column, Integer, String, MetaData
 
-class StreetPopulationModel:
+# 길단위인구 데이터 모델
+class PopulationStreetModel:
     def __init__(self, metadata):
         self.street_population = Table(
-            'street_population', metadata,
-            # 기본키
+            'population_street', metadata,
+            # 상권 코드
             Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
             Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
+
             Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+
+            # 상권 구분 코드
             Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
             Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
 
@@ -43,5 +47,3 @@ class StreetPopulationModel:
             Column('TMZON_17_21_FLPOP_CO', Integer, nullable=False, comment="시간대_17_21_유동인구_수"),
             Column('TMZON_21_24_FLPOP_CO', Integer, nullable=False, comment="시간대_21_24_유동인구_수"),
         )
-
-

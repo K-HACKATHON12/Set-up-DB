@@ -1,7 +1,8 @@
 from urllib.parse import quote
 from sqlalchemy import create_engine, text, MetaData
 from dotenv import dotenv_values
-from model.seoul import StreetPopulationModel
+from model.seoul_commercial_model import CommercialChangeIndicatorModel
+from model.seoul_population_model import PopulationStreetModel
 
 # take environment variables from .env
 config = dotenv_values("DB.env")
@@ -23,7 +24,9 @@ engine = create_engine(connection_string)
 metadata = MetaData()
 
 # Table 생성
-street_population = StreetPopulationModel(metadata)
+population_street = PopulationStreetModel(metadata)
+commercial_change_indicator = CommercialChangeIndicatorModel(metadata)
+
 metadata.create_all(engine)
 
 # 각 테이블에 데이터 생성
