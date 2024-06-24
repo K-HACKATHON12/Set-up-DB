@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, text
 from dotenv import dotenv_values
 
 # take environment variables from .env
-config = dotenv_values(".env")
+config = dotenv_values("DB.env")
 
 # URL 인코딩을 통해 특수 문자 처리
 username = config['USERNAME']
