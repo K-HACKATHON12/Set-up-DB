@@ -49,8 +49,9 @@ for model in models:
     pass
 print("데이터 초기화 완료")
 
-print("데이터 삽입 시작")
+print("데이터 삽입 시작, 주의: 1시간 이상 소요될 수 있습니다.")
 from metadata import metadata
 for model in models:
-    model.create_data_all()
+    # model.create_data_all(metadata, engine)
+    pass
 print("데이터 삽입 완료")
