@@ -37,7 +37,20 @@ models = [
     Model(population_workplace)
 ]
 
+print("테이블 생성 시작")
+from metadata import metadata
+# for model in models:
+#     model.create_table(metadata, engine)
+print("테이블 생성 완료")
+
+print("데이터 초기화 시작")
 from metadata import metadata
 for model in models:
-    model.create_table(metadata, engine)
+    pass
+print("데이터 초기화 완료")
 
+print("데이터 삽입 시작")
+from metadata import metadata
+for model in models:
+    model.create_data_all()
+print("데이터 삽입 완료")

@@ -137,6 +137,7 @@ commercial_sales_info = Table(
     Column('SVC_INDUTY_CD_NM', String, nullable=False, comment="서비스_업종_코드_명"),
 )
 
+# 점포
 commercial_business_info = Table(
             'commercial_business_info', metadata,
 
