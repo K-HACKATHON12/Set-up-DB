@@ -1,9 +1,10 @@
 from urllib.parse import quote
-from sqlalchemy import create_engine, text, MetaData
+from sqlalchemy import create_engine, MetaData
 from dotenv import dotenv_values
-from model.seoul_commercial_model import CommercialChangeIndicatorModel, CommercialExpenditureModel, CommercialSalesInfoModel, CommercialBusinessInfoModel, CommercialFacilityInfoModel
-from model.seoul_locatation_model import LocAdministrativeDistrictModel, LocApartmentInfoModel
-from model.seoul_population_model import PopulationResidentModel, PopulationStreetModel, PopulationWorkplaceModel
+from model.tables.seoul_commercial_model import *
+from model.tables.seoul_locatation_model import *
+from model.tables.seoul_population_model import *
+from model.model import Model
 
 # take environment variables from .env
 config = dotenv_values("DB.env")
@@ -21,21 +22,36 @@ connection_string = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/
 # SQLAlchemy 엔진 생성
 engine = create_engine(connection_string)
 
-# 메타데이터 객체 생성
-metadata = MetaData()
+models = [
+    Model(commercial_change_indicator),
+    Model(commercial_expenditure),
+    Model(commercial_business_info),
+    Model(commercial_sales_info),
+    Model(commercial_facility_info),
 
-# Table 생성
-commercial_change_indicator_table = CommercialChangeIndicatorModel(metadata)
-commercial_expanditure_table = CommercialExpenditureModel(metadata)
-commercial_sales_info_table = CommercialSalesInfoModel(metadata)
-commercial_bussiness_info_table = CommercialBusinessInfoModel(metadata)
-loc_apartment_info_table = LocApartmentInfoModel(metadata)
-loc_administrative_district_table = LocAdministrativeDistrictModel(metadata)
-loc_facility_info_table = CommercialFacilityInfoModel(metadata)
-population_street_table = PopulationStreetModel(metadata)
-population_resident_table = PopulationResidentModel(metadata)
-population_workplace_table = PopulationWorkplaceModel(metadata)
-metadata.create_all(engine)
+    Model(loc_apartment_info),
+    Model(loc_administrative_district),
 
+    Model(population_street),
+    Model(population_resident),
+    Model(population_workplace)
+]
 
-# 각 테이블에 데이터 생성
+print("테이블 생성 시작")
+from metadata import metadata
+# for model in models:
+#     model.create_table(metadata, engine)
+print("테이블 생성 완료")
+
+print("데이터 초기화 시작")
+from metadata import metadata
+for model in models:
+    pass
+print("데이터 초기화 완료")
+
+print("데이터 삽입 시작, 주의: 1시간 이상 소요될 수 있습니다.")
+from metadata import metadata
+for model in models:
+    # model.create_data_all(metadata, engine)
+    pass
+print("데이터 삽입 완료")
