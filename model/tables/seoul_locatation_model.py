@@ -4,13 +4,14 @@ from metadata import metadata
 # 아파트
 loc_apartment_info = Table(
     'loc_apartment_info', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="아파트_ID"),
 
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
     # 아파트 관련 정보
     Column('APT_HSMP_CO', Integer, nullable=False, comment="아파트_단지_수"),
@@ -37,9 +38,9 @@ loc_apartment_info = Table(
 # 상권 영역
 loc_administrative_district = Table(
     'loc_administrative_district', metadata,
-
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="료이키_ID"),
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),

@@ -4,12 +4,13 @@ from metadata import metadata
 # 길단위인구 데이터 모델
 population_street = Table(
     'population_street', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="길단위인구_ID"),
     # 상권 코드
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
     # 남성 유동인구 수
     Column('ML_FLPOP_CO', Integer, nullable=False, comment="남성_유동인구_수"),
@@ -47,13 +48,14 @@ population_street = Table(
 # 상주인구
 population_resident = Table(
     'population_resident', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="상주인구_ID"),
 
     # 상권 코드
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
             Column('TOT_REPOP_CO', Integer, nullable=False, comment="총_상주인구_수"),
 
@@ -94,13 +96,14 @@ population_resident = Table(
 # 직장 인구
 population_workplace = Table(
     'population_workplace', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="직장인구_ID"),
 
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
     Column('TOT_WRC_POPLTN_CO', Integer, nullable=False, comment="총_직장_인구_수"),
 

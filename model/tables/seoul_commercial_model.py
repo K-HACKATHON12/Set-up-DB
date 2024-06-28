@@ -5,14 +5,13 @@ from metadata import metadata
 commercial_change_indicator = Table(
     'commercial_change_indicator', metadata,
 
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="상권변화지표_ID"),
     # 상권 코드
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
 
-    # 기준 년분기 코드
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
-    # 상권 구분 코드
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
 
@@ -37,12 +36,16 @@ commercial_change_indicator = Table(
 # 상권 소득 소비 데이터 모델
 commercial_expenditure = Table(
     'commercial_expenditure', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="소득소비_ID"),
+
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
+
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
     # 지출 항목별 총 금액
     Column('LSR_EXPNDTR_TOTAMT', BigInteger, nullable=False, comment="여가_지출_총금액"),
@@ -57,20 +60,23 @@ commercial_expenditure = Table(
     Column('TRNSPORT_EXPNDTR_TOTAMT', BigInteger, nullable=False, comment="교통_지출_총금액"),
 
     # 소득 관련 정보
-    Column('INCOME_SCTN_CD', String, nullable=False, comment="소득_구간_코드"),
+    Column('INCOME_SCTN_CD', Integer, nullable=False, comment="소득_구간_코드"),
     Column('MT_AVRG_INCOME_AMT', BigInteger, nullable=False, comment="월_평균_소득_금액"),
 )
 
 # 상권 추정 매출 데이터 모델
 commercial_sales_info = Table(
     'commercial_sales_info', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="추정매출_ID"),
 
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
+
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
     # 연령대별 매출 금액 및 건수
     Column('AGRDE_10_SELNG_AMT', BigInteger, nullable=False, default=0, comment="연령대_10_매출_금액"),
@@ -139,14 +145,17 @@ commercial_sales_info = Table(
 
 # 점포
 commercial_business_info = Table(
-            'commercial_business_info', metadata,
+    'commercial_business_info', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="점포_ID"),
 
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
+
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
     # 점포 관련 정보
     Column('STOR_CO', Integer, nullable=False, comment="점포_수"),
@@ -168,13 +177,14 @@ commercial_business_info = Table(
 # 집객시설
 commercial_facility_info = Table(
     'commercial_facility_info', metadata,
+    Column('ID', Integer, primary_key=True, autoincrement=True, comment="집객시설_ID"),
 
     # 상권 관련 정보
-    Column('TRDAR_CD', String, nullable=False, comment="상권_코드"),
+    Column('TRDAR_CD', Integer, nullable=False, comment="상권_코드"),
     Column('TRDAR_CD_NM', String, nullable=False, comment="상권_코드_명"),
     Column('TRDAR_SE_CD', String, nullable=False, comment="상권_구분_코드"),
     Column('TRDAR_SE_CD_NM', String, nullable=False, comment="상권_구분_코드_명"),
-    Column('STDR_YYQU_CD', String, nullable=False, comment="기준_년분기_코드"),
+    Column('STDR_YYQU_CD', Integer, nullable=False, comment="기준_년분기_코드"),
 
 
     # 시설 관련 정보
